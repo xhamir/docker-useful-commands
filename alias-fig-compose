@@ -1,0 +1,16 @@
+
+# A Bash function that clears the log of a container:
+function clearDockerContainerLog() {
+  _containerLogPath=$(docker inspect -f '{{ .LogPath }}' $1)
+  sudo sh -c "cat /dev/null > $_containerLogPath"
+  _containerLogPath=""
+}
+
+# An alias to the function that clears the container log:
+alias clean-docker-log="clearDockerContainerLog"
+
+# Refer to docker-compose as "fig", it's original and shorter name:
+alias fig="docker-compose"
+
+# An alias that shortens the docker-compose "run & remove" command:
+alias figrun="docker-compose run --rm"
